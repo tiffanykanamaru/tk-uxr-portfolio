@@ -1,0 +1,113 @@
+<title>Tiffany Kanamaru — User Researcher</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script src="password-gate.js"></script>
+
+<aside class="sidebar" id="sidebar">
+  <a class="logo" href="index.html">Tiffany Kanamaru</a>
+  <div class="sidebar-icons">
+    <button type="button" class="icon-btn" data-copy-email="tiffanykanamaru@gmail.com" aria-label="Copy email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+      <span class="icon-tooltip">Copy email</span>
+    </button>
+    <a class="icon-btn" href="https://www.linkedin.com/in/tiffany-kanamaru/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4zM8.5 8h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.06 0 4.81 2.67 4.81 6.14V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.66 1.8-2.66 3.65V23h-4z"/></svg>
+    </a>
+  </div>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <ul class="sidebar-nav">
+    <li><a href="#work" class="active">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="ai.html">AI</a></li>
+    <li><a href="resume.pdf">Resume</a></li>
+  </ul>
+</aside>
+<script>
+  document.getElementById('nav-toggle').addEventListener('click', function () {
+    document.getElementById('sidebar').classList.toggle('open');
+  });
+  document.querySelectorAll('[data-copy-email]').forEach(function (btn) {
+    var tip = btn.querySelector('.icon-tooltip');
+    var defaultText = tip.textContent;
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(btn.getAttribute('data-copy-email'));
+      tip.textContent = 'Copied!';
+      setTimeout(function () { tip.textContent = defaultText; }, 1500);
+    });
+  });
+</script>
+
+<main class="main">
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow-script">I'm Tiffany.</span>
+    <h1>I enjoy turning user insights into products that feel intuitive, delightful, and human.</h1>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <p>A few recent research projects — replace these cards with your own case studies.</p>
+    </div>
+    <div class="projects-grid">
+
+      <a class="project-card" href="case-study.html">
+        <div class="project-thumb">Project cover image</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Mixed methods</span>
+            <span class="tag">0 → 1</span>
+          </div>
+          <h3>Project title one</h3>
+          <p>One-sentence summary of the problem you researched and the impact it had.</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="case-study.html">
+        <div class="project-thumb">Project cover image</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Usability testing</span>
+            <span class="tag">Redesign</span>
+          </div>
+          <h3>Project title two</h3>
+          <p>One-sentence summary of the problem you researched and the impact it had.</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="case-study.html">
+        <div class="project-thumb">Project cover image</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Survey</span>
+            <span class="tag">Strategy</span>
+          </div>
+          <h3>Project title three</h3>
+          <p>One-sentence summary of the problem you researched and the impact it had.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:flex-start; width:100%; flex-wrap:wrap; gap:12px;">
+    <span style="text-align:left; margin-right:auto;">© 2026 Tiffany Kanamaru</span>
+    <span style="display:flex; flex-direction:column; align-items:flex-end; gap:2px;">
+      <span style="font-family: var(--font-script); font-size: 1.3rem; color: var(--ink-soft);">Let's chat!</span>
+      <a href="mailto:tiffanykanamaru@gmail.com">tiffanykanamaru@gmail.com</a>
+    </span>
+  </div>
+</footer>
+
+</main>

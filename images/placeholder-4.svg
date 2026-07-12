@@ -1,0 +1,11 @@
+<svg viewBox="0 0 440 520" xmlns="http://www.w3.org/2000/svg">
+  <rect width="440" height="520" fill="#f2ece3"/>
+  <rect width="440" height="520" fill="url(#g4)"/>
+  <defs>
+    <radialGradient id="g4" cx="80%" cy="15%" r="80%">
+      <stop offset="0%" stop-color="#d8c9f0" stop-opacity="0.5"/>
+      <stop offset="55%" stop-color="#d8c9f0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <text x="220" y="270" font-family="Georgia, serif" font-size="26" fill="#6e655f" text-anchor="middle">Photo 4</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio-static",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "python3 -m http.server $PORT --directory /Users/tiffanykanamaru/Desktop/ux-research-portfolio"],
+      "port": 4173,
+      "autoPort": true
+    }
+  ]
+}

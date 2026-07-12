@@ -1,0 +1,376 @@
+<title>Design System — Tiffany Kanamaru Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link id="font-link" href="https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script src="password-gate.js"></script>
+<style>
+  /* Design-system-page-only styles. Everything under .ds-* is scaffolding
+     for browsing tokens/components; it does not exist on the real site. */
+  body { padding-bottom: 120px; }
+
+  .ds-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ds-topbar-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ds-topbar h1 {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+
+  .ds-topbar p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+
+  .ds-wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .ds-section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ds-section h2 {
+    font-size: 1.5rem;
+    margin: 0 0 8px;
+  }
+
+  .ds-section > p.ds-desc {
+    color: var(--ink-soft);
+    margin: 0 0 32px;
+    max-width: 640px;
+  }
+
+  /* Swatches */
+  .ds-swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+  }
+
+  .ds-swatch {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .ds-swatch-fill { height: 76px; }
+
+  .ds-swatch-info { padding: 12px 14px; background: var(--paper); }
+
+  .ds-swatch-info .name { font-weight: 700; font-size: 0.9rem; }
+  .ds-swatch-info .value {
+    font-family: "SF Mono", Menlo, monospace;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+
+  /* Type specimens */
+  .ds-type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .ds-type-row:last-child { border-bottom: none; }
+
+  .ds-type-meta {
+    flex: 0 0 200px;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    font-family: "SF Mono", Menlo, monospace;
+  }
+
+  .ds-type-sample { flex: 1; min-width: 0; }
+
+  /* Component gallery */
+  .ds-component-block {
+    margin-bottom: 40px;
+  }
+
+  .ds-component-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+
+  .ds-component-stage {
+    border: 1px dashed var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    background: var(--paper);
+  }
+
+  .ds-token-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .ds-token-row:last-child { border-bottom: none; }
+
+  .ds-token-name {
+    flex: 0 0 140px;
+    font-family: "SF Mono", Menlo, monospace;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+
+  .ds-radius-demo {
+    width: 64px;
+    height: 64px;
+  }
+</style>
+
+<div class="ds-topbar">
+  <div class="ds-topbar-inner">
+    <div>
+      <h1>Design system</h1>
+      <p>Extracted from the reference portfolio — pulls in the real styles.css</p>
+    </div>
+    <p><a href="index.html">&larr; Back to site</a></p>
+  </div>
+</div>
+
+<div class="ds-wrap">
+
+  <section class="ds-section">
+    <h2>Color tokens</h2>
+    <p class="ds-desc">Two distinct accents in the reference: a pale blue used for small UI states (active nav bar, icon hover), and a soft pink→peach gradient used as decorative background art (case-study header, project thumbnails). No dot texture — background is plain.</p>
+    <div class="ds-swatch-grid">
+      <div class="ds-swatch">
+        <div class="ds-swatch-fill" style="background: var(--ink);"></div>
+        <div class="ds-swatch-info"><div class="name">--ink</div><div class="value">#211c1a</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-fill" style="background: var(--ink-soft);"></div>
+        <div class="ds-swatch-info"><div class="name">--ink-soft</div><div class="value">#6e655f</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-fill" style="background: var(--paper); border-bottom: 1px solid var(--border);"></div>
+        <div class="ds-swatch-info"><div class="name">--paper</div><div class="value">#faf7f2</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-fill" style="background: var(--paper-soft);"></div>
+        <div class="ds-swatch-info"><div class="name">--paper-soft</div><div class="value">#f2ece3</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-fill" style="background: var(--accent);"></div>
+        <div class="ds-swatch-info"><div class="name">--accent</div><div class="value">#cfe0ee (pale blue)</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-fill" style="background: var(--border);"></div>
+        <div class="ds-swatch-info"><div class="name">--border</div><div class="value">#e6ded2</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-fill" style="background: var(--gradient);"></div>
+        <div class="ds-swatch-info"><div class="name">--gradient</div><div class="value">pink → peach radial</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2>Typography</h2>
+    <p class="ds-desc">Three font roles: <strong>Newsreader</strong> (light weight) for display/serif (logo, headlines), <strong>Caveat</strong> for the handwritten greeting accent, and <strong>Inter</strong> for body copy and UI. All loaded from Google Fonts.</p>
+
+    <div class="ds-type-row">
+      <div class="ds-type-meta">script greeting<br>1.75rem / 600 · Caveat</div>
+      <div class="ds-type-sample"><span class="eyebrow-script">✋ Hi, I'm Tiffany.</span></div>
+    </div>
+    <div class="ds-type-row">
+      <div class="ds-type-meta">eyebrow (uppercase)<br>0.8rem / 700 · Inter</div>
+      <div class="ds-type-sample"><span class="eyebrow">Case study</span></div>
+    </div>
+    <div class="ds-type-row">
+      <div class="ds-type-meta">h1 (hero)<br>clamp(2.5rem, 6vw, 5.25rem) / 300 · Newsreader</div>
+      <div class="ds-type-sample"><h1 style="margin:0; font-size: 2.75rem;">Heading one example</h1></div>
+    </div>
+    <div class="ds-type-row">
+      <div class="ds-type-meta">h2 (section-head)<br>~1.6–2.1rem / 300 · Newsreader</div>
+      <div class="ds-type-sample"><h2 style="margin:0;">Section heading</h2></div>
+    </div>
+    <div class="ds-type-row">
+      <div class="ds-type-meta">h3 (project title)<br>1.15rem / 500 · Newsreader</div>
+      <div class="ds-type-sample"><h3 style="margin:0;">Project card title</h3></div>
+    </div>
+    <div class="ds-type-row">
+      <div class="ds-type-meta">body / hero-sub<br>1.05–1.15rem / 400 · Inter</div>
+      <div class="ds-type-sample"><p style="margin:0; color: var(--ink-soft); line-height: 1.7;">This is the regular paragraph style used for descriptions and body copy throughout the site.</p></div>
+    </div>
+    <div class="ds-type-row">
+      <div class="ds-type-meta">tag<br>0.75rem / 600 · Inter</div>
+      <div class="ds-type-sample"><span class="tag">Mixed methods</span></div>
+    </div>
+    <div class="ds-type-row">
+      <div class="ds-type-meta">stat number<br>clamp(1.9rem, 3vw, 2.5rem) / 700 · Inter</div>
+      <div class="ds-type-sample"><div class="stat-number">2×</div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2>Spacing &amp; radius</h2>
+    <p class="ds-desc">Layout tokens used across cards, buttons, and containers.</p>
+    <div class="ds-token-row">
+      <div class="ds-token-name">--radius</div>
+      <div class="ds-radius-demo" style="border-radius: var(--radius); background: var(--gradient);"></div>
+      <div style="color: var(--ink-soft); font-size: 0.9rem;">20px — used on cards, hero image, gate box</div>
+    </div>
+    <div class="ds-token-row">
+      <div class="ds-token-name">--max</div>
+      <div style="color: var(--ink-soft); font-size: 0.9rem;">1040px — max content width (<code>.wrap</code>)</div>
+    </div>
+    <div class="ds-token-row">
+      <div class="ds-token-name">--sidebar-w</div>
+      <div style="color: var(--ink-soft); font-size: 0.9rem;">240px — fixed left sidebar width (desktop)</div>
+    </div>
+    <div class="ds-token-row">
+      <div class="ds-token-name">pill radius</div>
+      <div class="ds-radius-demo" style="border-radius: 999px; background: var(--ink);"></div>
+      <div style="color: var(--ink-soft); font-size: 0.9rem;">999px — buttons, tags</div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2>Components</h2>
+    <p class="ds-desc">Rendered with the actual classes from styles.css.</p>
+
+    <div class="ds-component-block">
+      <div class="ds-component-label">Sidebar icon button (hover to see tooltip)</div>
+      <div class="ds-component-stage">
+        <button type="button" class="icon-btn" data-copy-email="tiffanykanamaru@gmail.com" aria-label="Copy email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+          <span class="icon-tooltip">Copy email</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ds-component-block">
+      <div class="ds-component-label">Buttons</div>
+      <div class="ds-component-stage">
+        <a class="btn btn-primary" href="#" onclick="return false;">Primary button</a>
+        <a class="btn btn-secondary" href="#" onclick="return false;">Secondary button</a>
+      </div>
+    </div>
+
+    <div class="ds-component-block">
+      <div class="ds-component-label">Tags</div>
+      <div class="ds-component-stage">
+        <span class="tag">Mixed methods</span>
+        <span class="tag">0 &rarr; 1</span>
+      </div>
+    </div>
+
+    <div class="ds-component-block">
+      <div class="ds-component-label">Project card</div>
+      <div class="ds-component-stage">
+        <div style="max-width: 320px;">
+          <a class="project-card" href="#" onclick="return false;">
+            <div class="project-thumb">Project cover image</div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag">Mixed methods</span>
+                <span class="tag">0 &rarr; 1</span>
+              </div>
+              <h3>Project title</h3>
+              <p>One-sentence summary of the problem and impact.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-component-block">
+      <div class="ds-component-label">Stats row</div>
+      <div class="ds-component-stage" style="display:block;">
+        <div class="stats-row" style="margin: 0; border: none; padding: 0;">
+          <div><div class="stat-number">2&times;</div><div class="stat-label">Likes sent vs. main stack</div></div>
+          <div><div class="stat-number">&uarr; 10%</div><div class="stat-label">Tile opens on Explore</div></div>
+          <div><div class="stat-number">2 months</div><div class="stat-label">From kickoff to launch</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-component-block">
+      <div class="ds-component-label">Mentions row</div>
+      <div class="ds-component-stage">
+        <div class="mentions-row" style="border: none; margin: 0; padding: 0;">
+          <span class="mention-pill">Mashable</span>
+          <span class="mention-pill">TechCrunch</span>
+          <span class="mention-pill">Daily Mail</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-component-block">
+      <div class="ds-component-label">Insight list item (case study)</div>
+      <div class="ds-component-stage" style="display:block;">
+        <ul class="insight-list" style="max-width: 480px;">
+          <li><strong>Insight headline</strong>Supporting evidence or quote goes here.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ds-component-block">
+      <div class="ds-component-label">Case study meta item</div>
+      <div class="ds-component-stage">
+        <div class="cs-meta-item">
+          <div class="label">Role</div>
+          <div class="value">Lead Researcher</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-component-block">
+      <div class="ds-component-label">Gradient hero band</div>
+      <div class="ds-component-stage" style="padding:0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;">
+        <div style="background: var(--gradient); width: 100%; padding: 40px; text-align: center; color: rgba(33,28,26,0.6); font-size: 0.9rem;">cs-header / project-thumb / cs-hero-image fill</div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+<script>
+  document.querySelectorAll('[data-copy-email]').forEach(function (btn) {
+    var tip = btn.querySelector('.icon-tooltip');
+    var defaultText = tip.textContent;
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(btn.getAttribute('data-copy-email'));
+      tip.textContent = 'Copied!';
+      setTimeout(function () { tip.textContent = defaultText; }, 1500);
+    });
+  });
+</script>
