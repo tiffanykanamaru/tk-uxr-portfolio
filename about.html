@@ -25,7 +25,7 @@
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html" class="active">About</a></li>
     <li><a href="ai.html">AI</a></li>
-    <li><a href="resume.pdf">Resume</a></li>
+    <li><a href="resume/Tiffany%20Kanamaru%20Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
   </ul>
 </aside>
 <script>
@@ -56,7 +56,7 @@
 </header>
 
 <footer>
-  <div class="wrap" style="display:flex; justify-content:flex-start; width:100%; flex-wrap:wrap; gap:12px;">
+  <div class="wrap footer-wrap">
     <span style="text-align:left; margin-right:auto;">© 2026 Tiffany Kanamaru</span>
     <span style="display:flex; flex-direction:column; align-items:flex-end; gap:2px;">
       <span style="font-family: var(--font-script); font-size: 1.3rem; color: var(--ink-soft);">Let's chat!</span>
@@ -69,8 +69,9 @@
   var photos = [
     { src: 'images/image1.JPG', alt: 'Photo of Tiffany', caption: 'Swipe to learn more about me!' },
     { src: 'images/image2.jpg', alt: 'Photo of Tiffany', caption: 'I have a dog named Pookie' },
-    { src: 'images/placeholder-3.svg', alt: 'Photo of Tiffany', caption: 'Add a caption for this photo here.' },
-    { src: 'images/placeholder-4.svg', alt: 'Photo of Tiffany', caption: 'Add a caption for this photo here.' }
+    { src: 'images/image3.jpg', alt: 'Photo of Tiffany', caption: 'I love spending my weekends finding new cafes to try' },
+    { src: 'images/image4.JPG', alt: 'Photo of Tiffany', caption: 'I love watching movies and was lucky<br>enough to attend a few premieres!' },
+    { src: 'images/image5.JPG', alt: 'Photo of Tiffany', caption: 'In the winter you can find me on my snowboard' }
   ];
   var stack = document.getElementById('polaroid-stack');
   var swiping = false;
@@ -104,7 +105,7 @@
 
     var caption = document.createElement('div');
     caption.className = 'polaroid-caption';
-    caption.textContent = photo.caption;
+    caption.innerHTML = photo.caption;
     card.appendChild(caption);
 
     photoWrap.addEventListener('mousemove', function (e) {
