@@ -289,6 +289,11 @@ h1 {
   width: 460px;
   height: auto;
   margin-top: 24px;
+  transition: transform 0.35s cubic-bezier(0.22, 0.8, 0.32, 1);
+}
+
+.notepad:hover {
+  transform: translateY(-6px) rotate(-1deg) scale(1.015);
 }
 
 @media (max-width: 860px) {
@@ -317,18 +322,19 @@ h1 {
 
 .experience-company {
   font-family: var(--font-body);
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: var(--ink);
 }
 
 .experience-details h3 {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin: 0 0 8px;
 }
 
 .experience-details p {
   margin: 0;
+  font-size: 0.9rem;
   color: var(--ink-soft);
   line-height: 1.6;
 }
@@ -749,6 +755,22 @@ footer {
   color: var(--ink-soft);
 }
 
+@media (min-width: 861px) {
+  footer {
+    border-top: none;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: calc(-1 * var(--sidebar-w));
+    width: 100vw;
+    height: 1px;
+    background: var(--border);
+  }
+}
+
 .footer-wrap {
   display: flex;
   justify-content: flex-end;
@@ -757,7 +779,19 @@ footer {
 }
 
 .footer-copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   text-align: left;
+}
+
+.footer-clawd {
+  display: inline-block;
+  width: 18px;
+  height: auto;
+  vertical-align: middle;
+  margin-left: 2px;
 }
 
 @media (min-width: 861px) {

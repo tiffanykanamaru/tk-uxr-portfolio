@@ -63,12 +63,12 @@
     <span class="eyebrow">Experience</span>
     <div class="experience-list">
       <div class="experience-row">
-        <div class="experience-company">Company Name</div>
+        <div class="experience-company">Snapchat</div>
         <div class="experience-details">
-          <h3>Job Title</h3>
-          <p>One or two sentence summary of what you owned in this role and the impact you had.</p>
+          <h3>Senior UX Researcher</h3>
+          <p>Established and scaled user research across 5 product areas at Snapchat, led 60+ qualitative and quantitative studies that informed design and product strategy, including 25+ product launches and 10 net-new products from concept to launch.</p>
         </div>
-        <div class="experience-dates">20XX &ndash; Now</div>
+        <div class="experience-dates">2022 &ndash; Now</div>
       </div>
       <div class="experience-row">
         <div class="experience-company">Amazon</div>
@@ -84,7 +84,10 @@
 
 <footer>
   <div class="wrap footer-wrap">
-    <span class="footer-copyright">© 2026 Tiffany Kanamaru</span>
+    <span class="footer-copyright">
+      <span style="font-family: var(--font-script); font-size: 1.3rem; color: var(--ink-soft);">Made with Claude <img src="images/clawd.png" alt="" class="footer-clawd" aria-hidden="true" /></span>
+      &copy; 2026 Tiffany Kanamaru
+    </span>
     <span style="display:flex; flex-direction:column; align-items:flex-end; gap:2px;">
       <span style="font-family: var(--font-script); font-size: 1.3rem; color: var(--ink-soft);">Let's chat!</span>
       <a href="mailto:tiffanykanamaru@gmail.com">tiffanykanamaru@gmail.com</a>
@@ -97,7 +100,7 @@
     { src: 'images/image1.JPG', alt: 'Photo of Tiffany', caption: 'Swipe to learn more about me!' },
     { src: 'images/image2.jpg', alt: 'Photo of Tiffany', caption: 'I have a dog named Pookie' },
     { src: 'images/image3.jpg', alt: 'Photo of Tiffany', caption: 'I love spending my weekends finding new cafes to try' },
-    { src: 'images/image4.JPG', alt: 'Photo of Tiffany', caption: 'I love watching movies and was lucky<br>enough to attend a few premieres!' },
+    { src: 'images/image4.JPG', alt: 'Photo of Tiffany', caption: 'I love watching movies and was lucky<br>enough to attend a few premieres!', position: 'center 80%' },
     { src: 'images/image5.JPG', alt: 'Photo of Tiffany', caption: 'In the winter you can find me on my snowboard' }
   ];
   var stack = document.getElementById('polaroid-stack');
@@ -122,6 +125,9 @@
     img.className = 'polaroid-photo';
     img.src = photo.src;
     img.alt = photo.alt;
+    if (photo.position) {
+      img.style.objectPosition = photo.position;
+    }
     photoWrap.appendChild(img);
     card.appendChild(photoWrap);
 
