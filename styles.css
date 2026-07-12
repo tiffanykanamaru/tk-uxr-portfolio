@@ -279,70 +279,77 @@ h1 {
 
 .about-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 56px;
   flex-wrap: wrap;
 }
 
 .notepad {
-  position: relative;
   flex: 0 0 auto;
-  width: 300px;
-  min-height: 400px;
+  width: 460px;
+  height: auto;
   margin-top: 24px;
-  padding: 44px 34px;
-  background: #faf6ee;
-  background-image: radial-gradient(rgba(33, 28, 26, 0.035) 1px, transparent 1px);
-  background-size: 4px 4px;
-  clip-path: polygon(
-    1.5% 4%, 18% 1%, 34% 2.5%, 52% 0.5%, 70% 2%, 86% 0.8%, 99% 5%,
-    98% 20%, 100% 38%, 98.5% 56%, 100% 74%, 98% 90%, 99% 98.5%,
-    82% 100%, 64% 98.5%, 46% 100%, 28% 98.8%, 12% 100%, 0.5% 96%,
-    2% 78%, 0.5% 60%, 2% 42%, 0.8% 24%, 2% 10%
-  );
-  box-shadow: 0 22px 46px rgba(33, 28, 26, 0.14);
-  transform: rotate(1.5deg);
 }
 
-.notepad-tape {
-  position: absolute;
-  width: 92px;
-  height: 36px;
-  background: linear-gradient(135deg, rgba(214, 164, 179, 0.9), rgba(232, 195, 206, 0.75));
-  box-shadow: 0 3px 6px rgba(33, 28, 26, 0.18);
+@media (max-width: 860px) {
+  .notepad {
+    width: 100%;
+    max-width: 380px;
+  }
 }
 
-.notepad-tape--top {
-  top: -16px;
-  right: 22px;
-  transform: rotate(42deg);
+/* ---------- Experience ---------- */
+.experience-list {
+  margin-top: 8px;
 }
 
-.notepad-tape--bottom {
-  bottom: -16px;
-  left: 14px;
-  transform: rotate(42deg);
+.experience-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 140px;
+  gap: 32px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
 }
 
-.notepad-star {
-  position: absolute;
-  color: #cda546;
-  line-height: 1;
+.experience-row:last-child {
+  border-bottom: none;
 }
 
-.notepad-star--1 { top: 24px; right: 76px; font-size: 12px; }
-.notepad-star--2 { top: 36px; right: 52px; font-size: 22px; }
-.notepad-star--3 { top: 62px; right: 66px; font-size: 15px; }
-
-.notepad-body {
-  height: 100%;
+.experience-company {
   font-family: var(--font-body);
+  font-size: 1.15rem;
   color: var(--ink);
-  line-height: 1.7;
+}
+
+.experience-details h3 {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+}
+
+.experience-details p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.experience-dates {
+  text-align: right;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 @media (max-width: 720px) {
-  .notepad { width: 100%; max-width: 320px; }
+  .experience-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 24px 0;
+  }
+
+  .experience-dates {
+    text-align: left;
+  }
 }
 
 .polaroid-stack {
@@ -735,36 +742,30 @@ h1 {
 }
 
 footer {
+  position: relative;
   border-top: 1px solid var(--border);
   padding: 28px 0;
   font-size: 0.85rem;
   color: var(--ink-soft);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
 }
 
 .footer-wrap {
   display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  max-width: none;
-  margin: 0;
+  justify-content: flex-end;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-@media (min-width: 861px) {
-  .footer-wrap {
-    margin-left: calc(28px - var(--sidebar-w));
-  }
+.footer-copyright {
+  text-align: left;
 }
 
 @media (min-width: 861px) {
-  footer {
-    margin-left: calc(-1 * var(--sidebar-w));
-    padding-left: var(--sidebar-w);
+  .footer-copyright {
+    position: absolute;
+    left: calc(28px - var(--sidebar-w));
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 

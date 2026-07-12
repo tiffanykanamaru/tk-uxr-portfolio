@@ -51,13 +51,40 @@
       <span class="eyebrow">About</span>
       <h1 style="font-size: clamp(2rem, 4vw, 3rem);">Hi, I'm Tiffany</h1>
     </div>
-    <div class="polaroid-stack" id="polaroid-stack" aria-label="Photos of Tiffany, click to see the next one"></div>
+    <div class="about-row">
+      <div class="polaroid-stack" id="polaroid-stack" aria-label="Photos of Tiffany, click to see the next one"></div>
+      <img class="notepad" src="images/notepad6.png" alt="A handwritten note about Tiffany's background as a UX Researcher at Snapchat, previously at Amazon, and her degree in Cognitive Science from UCLA." />
+    </div>
   </div>
 </header>
 
+<section class="section" id="experience">
+  <div class="wrap">
+    <span class="eyebrow">Experience</span>
+    <div class="experience-list">
+      <div class="experience-row">
+        <div class="experience-company">Company Name</div>
+        <div class="experience-details">
+          <h3>Job Title</h3>
+          <p>One or two sentence summary of what you owned in this role and the impact you had.</p>
+        </div>
+        <div class="experience-dates">20XX &ndash; Now</div>
+      </div>
+      <div class="experience-row">
+        <div class="experience-company">Amazon</div>
+        <div class="experience-details">
+          <h3>UX Researcher</h3>
+          <p>Led 80+ qualitative and quantitative user research studies across 9 product teams, informing strategy and driving improvements across Ring home security devices, mobile app features, subscription services, and the e-commerce website</p>
+        </div>
+        <div class="experience-dates">2019 &ndash; 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap footer-wrap">
-    <span style="text-align:left; margin-right:auto;">© 2026 Tiffany Kanamaru</span>
+    <span class="footer-copyright">© 2026 Tiffany Kanamaru</span>
     <span style="display:flex; flex-direction:column; align-items:flex-end; gap:2px;">
       <span style="font-family: var(--font-script); font-size: 1.3rem; color: var(--ink-soft);">Let's chat!</span>
       <a href="mailto:tiffanykanamaru@gmail.com">tiffanykanamaru@gmail.com</a>
@@ -108,7 +135,7 @@
     caption.innerHTML = photo.caption;
     card.appendChild(caption);
 
-    photoWrap.addEventListener('mousemove', function (e) {
+    card.addEventListener('mousemove', function (e) {
       if (!isFront(card)) return;
       lastClientX = e.clientX;
       lastClientY = e.clientY;
@@ -116,12 +143,12 @@
       tag.style.left = (e.clientX - rect.left) + 'px';
       tag.style.top = (e.clientY - rect.top) + 'px';
     });
-    photoWrap.addEventListener('mouseenter', function () {
+    card.addEventListener('mouseenter', function () {
       if (!isFront(card)) return;
       pointerOverCard = true;
       tag.classList.add('is-visible');
     });
-    photoWrap.addEventListener('mouseleave', function () {
+    card.addEventListener('mouseleave', function () {
       if (!isFront(card)) return;
       pointerOverCard = false;
       tag.classList.remove('is-visible');
