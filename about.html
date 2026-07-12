@@ -77,93 +77,129 @@
   var pointerOverCard = false;
   var lastClientX = 0;
   var lastClientY = 0;
+  var cardStates = [];
 
-  function renderStack() {
-    stack.innerHTML = '';
+  function isFront(card) {
+    return card.getAttribute('data-pos') === '0';
+  }
+
+  function createCard(photo) {
+    var card = document.createElement('div');
+    card.className = 'polaroid-card';
+
+    var photoWrap = document.createElement('div');
+    photoWrap.className = 'polaroid-photo-wrap';
+
+    var img = document.createElement('img');
+    img.className = 'polaroid-photo';
+    img.src = photo.src;
+    img.alt = photo.alt;
+    photoWrap.appendChild(img);
+    card.appendChild(photoWrap);
+
+    var tag = document.createElement('span');
+    tag.className = 'polaroid-swipe-tag';
+    tag.innerHTML = 'Swipe <span aria-hidden="true">&rarr;</span>';
+    card.appendChild(tag);
+
+    var caption = document.createElement('div');
+    caption.className = 'polaroid-caption';
+    caption.textContent = photo.caption;
+    card.appendChild(caption);
+
+    photoWrap.addEventListener('mousemove', function (e) {
+      if (!isFront(card)) return;
+      lastClientX = e.clientX;
+      lastClientY = e.clientY;
+      var rect = card.getBoundingClientRect();
+      tag.style.left = (e.clientX - rect.left) + 'px';
+      tag.style.top = (e.clientY - rect.top) + 'px';
+    });
+    photoWrap.addEventListener('mouseenter', function () {
+      if (!isFront(card)) return;
+      pointerOverCard = true;
+      tag.classList.add('is-visible');
+    });
+    photoWrap.addEventListener('mouseleave', function () {
+      if (!isFront(card)) return;
+      pointerOverCard = false;
+      tag.classList.remove('is-visible');
+    });
+
+    card.addEventListener('click', function () {
+      if (isFront(card)) swipeTop();
+    });
+    card.addEventListener('keydown', function (e) {
+      if (isFront(card) && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        swipeTop();
+      }
+    });
+
+    return { card: card, tag: tag };
+  }
+
+  function setFront(state) {
+    state.card.setAttribute('role', 'button');
+    state.card.setAttribute('tabindex', '0');
+    var rect = state.card.getBoundingClientRect();
+    state.tag.style.left = (lastClientX - rect.left) + 'px';
+    state.tag.style.top = (lastClientY - rect.top) + 'px';
+    if (pointerOverCard) {
+      state.tag.classList.add('is-visible');
+    }
+  }
+
+  function initStack() {
     var visibleCount = Math.min(photos.length, 3);
     for (var i = 0; i < visibleCount; i++) {
-      var photo = photos[i];
-      var card = document.createElement('div');
-      card.className = 'polaroid-card';
-      card.setAttribute('data-pos', i);
-
-      var photoWrap = document.createElement('div');
-      photoWrap.className = 'polaroid-photo-wrap';
-
-      var img = document.createElement('img');
-      img.className = 'polaroid-photo';
-      img.src = photo.src;
-      img.alt = photo.alt;
-      photoWrap.appendChild(img);
-
-      card.appendChild(photoWrap);
-
-      if (i === 0) {
-        var tag = document.createElement('span');
-        tag.className = 'polaroid-swipe-tag';
-        tag.innerHTML = 'Swipe <span aria-hidden="true">&rarr;</span>';
-        card.appendChild(tag);
-
-        var cardRect = card.getBoundingClientRect();
-        tag.style.left = (lastClientX - cardRect.left) + 'px';
-        tag.style.top = (lastClientY - cardRect.top) + 'px';
-        if (pointerOverCard) {
-          tag.classList.add('is-visible');
-        }
-
-        photoWrap.addEventListener('mousemove', function (e) {
-          lastClientX = e.clientX;
-          lastClientY = e.clientY;
-          var rect = card.getBoundingClientRect();
-          tag.style.left = (e.clientX - rect.left) + 'px';
-          tag.style.top = (e.clientY - rect.top) + 'px';
-        });
-        photoWrap.addEventListener('mouseenter', function () {
-          pointerOverCard = true;
-          tag.classList.add('is-visible');
-        });
-        photoWrap.addEventListener('mouseleave', function () {
-          pointerOverCard = false;
-          tag.classList.remove('is-visible');
-        });
-      }
-
-      var caption = document.createElement('div');
-      caption.className = 'polaroid-caption';
-      caption.textContent = photo.caption;
-      card.appendChild(caption);
-
-      if (i === 0) {
-        card.setAttribute('role', 'button');
-        card.setAttribute('tabindex', '0');
-        card.addEventListener('click', swipeTop);
-        card.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            swipeTop();
-          }
-        });
-      }
-
-      stack.appendChild(card);
+      var state = createCard(photos[i]);
+      state.card.setAttribute('data-pos', i);
+      if (i === 0) setFront(state);
+      stack.appendChild(state.card);
+      cardStates.push(state);
     }
   }
 
   function swipeTop() {
-    if (swiping) return;
-    var topCard = stack.querySelector('.polaroid-card[data-pos="0"]');
-    if (!topCard) return;
+    if (swiping || !cardStates.length) return;
     swiping = true;
-    topCard.classList.add('swipe-out');
-    topCard.addEventListener('animationend', function handler() {
-      topCard.removeEventListener('animationend', handler);
+
+    var front = cardStates[0];
+    front.card.removeAttribute('role');
+    front.card.removeAttribute('tabindex');
+    front.card.classList.add('swipe-out');
+
+    front.card.addEventListener('animationend', function handler() {
+      front.card.removeEventListener('animationend', handler);
+      front.card.remove();
+      cardStates.shift();
+
+      cardStates.forEach(function (state, idx) {
+        state.card.setAttribute('data-pos', idx);
+      });
+      if (cardStates[0]) setFront(cardStates[0]);
+
       photos.push(photos.shift());
-      renderStack();
+      var visibleCount = Math.min(photos.length, 3);
+      if (cardStates.length < visibleCount) {
+        var nextState = createCard(photos[visibleCount - 1]);
+        nextState.card.setAttribute('data-pos', visibleCount - 1);
+        nextState.card.classList.add('polaroid-card-enter');
+        stack.appendChild(nextState.card);
+        cardStates.push(nextState);
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            nextState.card.classList.remove('polaroid-card-enter');
+          });
+        });
+      }
+
       swiping = false;
     });
   }
 
-  renderStack();
+  initStack();
 </script>
 
 </main>

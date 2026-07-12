@@ -314,6 +314,11 @@ h1 {
   pointer-events: none;
 }
 
+.polaroid-card-enter {
+  opacity: 0;
+  transform: translate(40px, 34px) rotate(10deg) scale(0.82) !important;
+}
+
 @keyframes polaroid-swipe-to-back {
   0% {
     transform: translate(0, 0) rotate(-3deg) scale(1);
