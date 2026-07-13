@@ -148,11 +148,12 @@
       var rect = card.getBoundingClientRect();
       tag.style.left = (e.clientX - rect.left) + 'px';
       tag.style.top = (e.clientY - rect.top) + 'px';
+      pointerOverCard = true;
+      tag.classList.add('is-visible');
     });
     card.addEventListener('mouseenter', function () {
       if (!isFront(card)) return;
       pointerOverCard = true;
-      tag.classList.add('is-visible');
     });
     card.addEventListener('mouseleave', function () {
       if (!isFront(card)) return;
@@ -179,7 +180,10 @@
     var rect = state.card.getBoundingClientRect();
     state.tag.style.left = (lastClientX - rect.left) + 'px';
     state.tag.style.top = (lastClientY - rect.top) + 'px';
-    if (pointerOverCard) {
+    var withinBounds = lastClientX >= rect.left && lastClientX <= rect.right &&
+      lastClientY >= rect.top && lastClientY <= rect.bottom;
+    pointerOverCard = withinBounds;
+    if (withinBounds) {
       state.tag.classList.add('is-visible');
     }
   }
@@ -189,8 +193,8 @@
     for (var i = 0; i < visibleCount; i++) {
       var state = createCard(photos[i]);
       state.card.setAttribute('data-pos', i);
-      if (i === 0) setFront(state);
       stack.appendChild(state.card);
+      if (i === 0) setFront(state);
       cardStates.push(state);
     }
   }
