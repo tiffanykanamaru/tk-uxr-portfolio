@@ -6,8 +6,8 @@
     '<style>body > *:not(#password-gate){display:none}</style>' +
     '<div id="password-gate">' +
       '<div class="gate-box">' +
-        '<h1>This portfolio is password protected</h1>' +
-        '<p>Enter the password to continue.</p>' +
+        '<h1>Tiffany Kanamaru&rsquo;s Portfolio</h1>' +
+        '<p>This portfolio is password protected. Enter the password to view it or please reach out to <a href="mailto:tiffanykanamaru@gmail.com">tiffanykanamaru@gmail.com</a> if you don\'t have one.</p>' +
         '<form id="gate-form">' +
           '<input type="password" id="gate-input" placeholder="Password" autofocus />' +
           '<button type="submit" class="btn btn-primary">Enter</button>' +
